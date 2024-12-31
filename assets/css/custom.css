@@ -1,0 +1,121 @@
+.hx-font-extrabold {
+    font-family: 'YourCustomFont', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  footer .hx-max-w-screen-xl {
+    display: none;
+}
+
+/* Основной переключатель языка */
+.language-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Компактный размер */
+  height: 0px; /* Фиксированная высота */
+  cursor: pointer;
+  outline: none; /* Убираем стандартное выделение */
+  box-shadow: none; /* Убираем тени */
+  transition: none; /* Полностью убираем анимации */
+}
+
+.language-switcher:hover,
+.language-switcher:focus {
+  background-color: var(--hover-bg-color, #f0f0f0); /* Без изменений фона */
+  border-color: var(--border-color, #ddd); /* Без изменений границы */
+  box-shadow: none; /* Убираем любые тени */
+  transition: none; /* Убираем любые анимации */
+}
+
+/* Выпадающее меню */
+.language-options {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%; /* Расположение ниже кнопки */
+  left: 0;
+  margin-top: 8px; /* Расстояние между кнопкой и списком */
+  padding: 4px 0; /* Минимальный внутренний отступ */
+  border-radius: 8px; /* Скругление углов */
+  z-index: 1000; /* Убедимся, что меню поверх других элементов */
+  min-width: 50px; /* Минимальная ширина */
+  max-height: 150px; /* Ограничение высоты */
+  overflow-y: hidden; /* Убираем прокрутку */
+  border: 1px solid var(--menu-border-color, #ddd); /* Граница */
+  background-color: var(--menu-bg-color, #fff); /* Фон */
+  box-shadow: none; /* Убираем тени */
+}
+
+/* Скрытое меню */
+.language-options.hx-hidden {
+  display: none;
+}
+
+/* Элемент списка */
+.language-options li {
+  list-style: none; /* Убираем стандартные маркеры списка */
+}
+
+/* Ссылки в выпадающем меню */
+.language-options a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px; /* Пространство вокруг флага */
+  text-decoration: none; /* Убираем подчеркивание */
+  color: var(--link-color, #333);
+  background: none; /* Убираем фон */
+  box-shadow: none; /* Убираем тени */
+  transition: none; /* Убираем анимации */
+}
+
+.language-options a:hover {
+  background-color: var(--hover-link-bg-color, #f5f5f5); /* Легкий фон при наведении */
+  color: var(--hover-link-color, #000); /* Изменение цвета текста */
+  transition: none; /* Убираем анимации */
+}
+
+/* Флаги внутри ссылок */
+.language-options a span,
+.language-switcher span {
+  display: inline-block;
+  font-size: 20px; /* Размер флага */
+  line-height: 1; /* Ровное выравнивание */
+}
+
+
+
+/* Скрываем текст внутри кнопки, оставляем только иконку */
+.theme-toggle span {
+  display: none;
+}
+
+/* Убираем контейнер */
+.sidebar-container .hx-sticky {
+  display: none;
+}
+
+/* Удостоверимся, что контейнеры не занимают место */
+.sidebar-container .hx-bottom-0 {
+  display: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Переносим высоту sidebar-container */
+.sidebar-container {
+  height: calc(100vh - var(--navbar-height));
+}
+
+/* Удостоверимся, что ничего не перекрывает sidebar */
+.mobile-menu-overlay {
+  display: none;
+}
+
+/* Убираем TOC из макета */
+.hextra-toc {
+  display: none !important;
+}
+

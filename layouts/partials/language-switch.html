@@ -1,0 +1,88 @@
+{{- $page := .context -}}
+{{- $grow := .grow -}}
+{{- $hideLabel := .hideLabel | default false -}}
+{{- $changeLanguage := (T "changeLanguage") | default "Change language" -}}
+
+{{- if hugo.IsMultilingual -}}
+  <div class="hx-flex hx-justify-items-start {{ if $grow }}hx-grow{{ end }}">
+    <button
+      title="{{ $changeLanguage }}"
+      data-state="closed"
+      class="language-switcher hx-h-7 hx-rounded-md hx-px-2 hx-text-left hx-text-xs hx-font-medium hx-text-gray-600 hx-transition-colors dark:hx-text-gray-400 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 hx-grow"
+      type="button"
+      aria-label="{{ $changeLanguage }}"
+    >
+      <div class="hx-flex hx-items-center hx-gap-2 hx-capitalize">
+        {{- /* Показываем SVG для текущего языка */ -}}
+        {{- if eq site.Language.Lang "lv" -}}
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet">
+        <span class="flag-icon flag-icon-lv"></span>
+        {{- else if eq site.Language.Lang "ru" -}}
+        <svg xmlns="http://www.w3.org/2000/svg" width="26.67" height="20" viewBox="0 0 26.67 20">
+          <rect width="26.67" height="6.67" fill="#F0F0F0" stroke="#888" stroke-width="0.7"></rect>
+          <rect y="6.67" width="26.67" height="6.67" fill="#0072CE"></rect>
+          <rect y="13.34" width="26.67" height="6.67" fill="#F0F0F0" stroke="#888" stroke-width="0.7"></rect>
+      </svg>
+      
+      
+      
+            
+        {{- else if eq site.Language.Lang "en" -}}
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet">
+        <span class="flag-icon flag-icon-gb"></span>
+        {{- else if eq site.Language.Lang "uk" -}}
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet">
+        <span class="flag-icon flag-icon-ua"></span>
+        {{- else -}}
+          <svg height="12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <circle cx="12" cy="12" r="10" stroke="currentColor"></circle>
+          </svg>
+        {{- end -}}
+        {{- if not $hideLabel }}
+          <span>{{ site.Language.LanguageName }}</span>
+        {{- end -}}
+      </div>
+    </button>
+    <ul
+      class="language-options hx-hidden hx-z-20 hx-max-h-64 hx-overflow-auto hx-rounded-md hx-ring-1 hx-ring-black/5 hx-bg-white hx-py-1 hx-text-sm hx-shadow-lg dark:hx-ring-white/20 dark:hx-bg-neutral-800"
+      style="position: fixed; inset: auto auto 0px 0px; margin: 0px; min-width: 100px;"
+    >
+      {{ range site.Languages }}
+        {{ $link := partial "utils/lang-link" (dict "lang" .Lang "context" $page) }}
+        <li class="hx-flex hx-flex-col">
+          <a
+            href="{{ $link }}"
+            class="hx-flex hx-items-center hx-gap-2 hx-text-gray-800 dark:hx-text-gray-100 hover:hx-bg-primary-50 hover:hx-text-primary-600 hover:dark:hx-bg-primary-500/10 hover:dark:hx-text-primary-600 hx-relative hx-cursor-pointer hx-whitespace-nowrap hx-py-1.5 hx-transition-colors ltr:hx-pl-3 ltr:hx-pr-9 rtl:hx-pr-3 rtl:hx-pl-9"
+          >
+            {{- /* SVG для каждого языка в списке */ -}}
+            {{- if eq .Lang "lv" -}}
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet">
+            <span class="flag-icon flag-icon-lv"></span>
+            {{- else if eq .Lang "ru" -}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="26.67" height="20" viewBox="0 0 26.67 20">
+              <rect width="26.67" height="6.67" fill="#F0F0F0" stroke="#888" stroke-width="0.7"></rect>
+              <rect y="6.67" width="26.67" height="6.67" fill="#0072CE"></rect>
+              <rect y="13.34" width="26.67" height="6.67" fill="#F0F0F0" stroke="#888" stroke-width="0.7"></rect>
+          </svg>
+          
+          
+            
+            {{- else if eq .Lang "en" -}}
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet">
+            <span class="flag-icon flag-icon-gb"></span>
+            {{- else if eq .Lang "uk" -}}
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet">
+            <span class="flag-icon flag-icon-ua"></span>
+            {{- else -}}
+              <svg height="12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <circle cx="12" cy="12" r="10" stroke="currentColor"></circle>
+              </svg>
+            {{- end -}}
+            <span>{{ .LanguageName }}</span>
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+{{- end -}}
+  

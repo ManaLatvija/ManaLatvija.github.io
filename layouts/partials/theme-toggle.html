@@ -1,0 +1,27 @@
+<head>
+  <!-- Добавляем FontAwesome для иконок -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+{{- $hideLabel := .hideLabel | default false -}}
+
+{{- $changeTheme := (T "changeTheme") | default "Change theme" -}}
+{{- $light := (T "light") | default "Light" -}}
+{{- $dark := (T "dark") | default "Dark" -}}
+
+<button
+  title="{{ $changeTheme }}"
+  data-theme="light"
+  class="theme-toggle hx-group hx-h-10 hx-w-10 hx-rounded-full hx-p-3 hx-text-left hx-text-sm hx-font-medium hx-text-gray-600 hx-transition-colors dark:hx-text-gray-400 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50"
+  type="button"
+  aria-label="{{ $changeTheme }}"
+>
+  <div class="hx-flex hx-items-center hx-gap-2 hx-capitalize">
+    <!-- Иконка солнца (FontAwesome) -->
+    <i class="fas fa-sun group-data-[theme=light]:hx-hidden" style="font-size: 16px;"></i>
+    {{- if not $hideLabel }}<span class="group-data-[theme=light]:hx-hidden">{{ $light }}</span>{{ end -}}
+    <!-- Иконка луны (FontAwesome) -->
+    <i class="fas fa-moon group-data-[theme=dark]:hx-hidden" style="font-size: 16px;"></i>
+    {{- if not $hideLabel }}<span class="group-data-[theme=dark]:hx-hidden">{{ $dark }}</span>{{ end -}}
+  </div>
+</button>
